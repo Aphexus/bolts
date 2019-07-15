@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module bolts.traits</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../bolts.html">bolts</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../bolts/iz.html">iz</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../bolts/members.html">members</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../bolts/meta.html">meta</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../bolts/range.html">range</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../bolts/traits.html">traits</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module bolts.traits</h1><p>Provides utilites that allow you to determine type traits
+</p>
+			<section><section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">class </span><span class="pln">C </span><span class="pun">{}
+</span><span class="kwd">struct </span><span class="pln">S </span><span class="pun">{}
+</span><span class="kwd">struct </span><span class="pln">S1 </span><span class="pun">{
+    </span><span class="kwd">this</span><span class="pun">(</span><span class="kwd">typeof</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">)) {}
+    </span><span class="typ">void </span><span class="pln">opAssign</span><span class="pun">(</span><span class="kwd">typeof</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">)) {}
+}
+
+</span><span class="kwd">static assert</span><span class="pun">( <a href="../bolts/traits/isNullable.html"></span><span class="pln">isNullable</span></a><span class="pun">!</span><span class="pln">C</span><span class="pun">);
+</span><span class="kwd">static assert</span><span class="pun">(!<a href="../bolts/traits/isNullable.html"></span><span class="pln">isNullable</span></a><span class="pun">!</span><span class="pln">S</span><span class="pun">);
+</span><span class="kwd">static assert</span><span class="pun">( <a href="../bolts/traits/isNullable.html"></span><span class="pln">isNullable</span></a><span class="pun">!</span><span class="pln">S1</span><span class="pun">);
+</span><span class="kwd">static assert</span><span class="pun">( <a href="../bolts/traits/isNullable.html"></span><span class="pln">isNullable</span></a><span class="pun">!(</span><span class="typ">int </span><span class="pun">*));
+</span><span class="kwd">static assert</span><span class="pun">(!<a href="../bolts/traits/isNullable.html"></span><span class="pln">isNullable</span></a><span class="pun">!(</span><span class="typ">int</span><span class="pun">));
+</span></code></pre>
+</section>
+</section>
+			<section>
+				<h2>Functions</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="StringOf" class="public" href="../bolts/traits/StringOf.html">StringOf</a><span class="decoration">()</span>
+							</code>
+						</td>
+						<td>Returns a stringof another template with it's real and non-mangled types
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Enums</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PropertySemantics" class="public" href="../bolts/traits/PropertySemantics.html">PropertySemantics</a>
+							</code>
+						</td>
+						<td>Represents the semantics supported by an @property member
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ProtectionLevel" class="public" href="../bolts/traits/ProtectionLevel.html">ProtectionLevel</a>
+							</code>
+						</td>
+						<td>Lists the various protection levels that can be applied on types
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Manifest constants</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="areCombinable" class="public" href="../bolts/traits/areCombinable.html">
+								<code>areCombinable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Tells you if a list of types, which are composed of ranges and non ranges,
+    share a common type after flattening the ranges (i.e. <code class="lang-d"><span class="typ">ElementType</span></code>)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="hasFunctionMember" class="public" href="../bolts/traits/hasFunctionMember.html">
+								<code>hasFunctionMember</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if a type has a function member
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="hasProperty" class="public" href="../bolts/traits/hasProperty.html">
+								<code>hasProperty</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Tells you if a name is a member and property in a type
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isBinaryOver" class="public" href="../bolts/traits/isBinaryOver.html">
+								<code>isBinaryOver</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if the first argument is a binary function over the next one OR two parameter arguments
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isCopyConstructable" class="public" href="../bolts/traits/isCopyConstructable.html">
+								<code>isCopyConstructable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks to see if a type is copy constructable - postblit doesn't count.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isFunctionOver" class="public" href="../bolts/traits/isFunctionOver.html">
+								<code>isFunctionOver</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if the passed in function is an n-ary function over the next n parameter arguments
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isLiteral" class="public" href="../bolts/traits/isLiteral.html">
+								<code>isLiteral</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if an alias is a literal
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isLiteralOf" class="public" href="../bolts/traits/isLiteralOf.html">
+								<code>isLiteralOf</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if an alias is a literal of some type
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isManifestAssignable" class="public" href="../bolts/traits/isManifestAssignable.html">
+								<code>isManifestAssignable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if the argument is a manifest constant, built-in type field, or immutable static
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isNonTriviallyCopyConstructable" class="public" href="../bolts/traits/isNonTriviallyCopyConstructable.html">
+								<code>isNonTriviallyCopyConstructable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks to see if a type is non-trivially copy constructable
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isNullable" class="public" href="../bolts/traits/isNullable.html">
+								<code>isNullable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true of T can be set to null
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isNullType" class="public" href="../bolts/traits/isNullType.html">
+								<code>isNullType</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>True if a is of type null
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isOf" class="public" href="../bolts/traits/isOf.html">
+								<code>isOf</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if the resolved type of one thing is the same as the resolved type of another thing.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isProperty" class="public" href="../bolts/traits/isProperty.html">
+								<code>isProperty</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Tells you if a symbol is an @property
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isRefType" class="public" href="../bolts/traits/isRefType.html">
+								<code>isRefType</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if a compile time entity is a reference type.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isSame" class="public" href="../bolts/traits/isSame.html">
+								<code>isSame</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if a and b are the same thing, or false if not. Both a and b can be types, literals, or symbols.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isTriviallyCopyConstructable" class="public" href="../bolts/traits/isTriviallyCopyConstructable.html">
+								<code>isTriviallyCopyConstructable</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if a type is trivially constructable, that is no user-defined copy constructor exists - postblit doesn't count.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isUnaryOver" class="public" href="../bolts/traits/isUnaryOver.html">
+								<code>isUnaryOver</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Returns true if the first argument is a unary function over the next parameter argument
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="isValueType" class="public" href="../bolts/traits/isValueType.html">
+								<code>isValueType</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Checks if a compile time entity is a value type
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="propertySemantics" class="public" href="../bolts/traits/propertySemantics.html">
+								<code>propertySemantics</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Tells you what property semantics a symbol has
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="protectionLevel" class="public" href="../bolts/traits/protectionLevel.html">
+								<code>protectionLevel</code>
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>Check if the access level of any symbol
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Global variables</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="StringOf" class="public" href="../bolts/traits/StringOf.html">
+								<code>StringOf</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="typ">void</span></code>
+						</td>
+						<td>Returns a stringof another template with it's real and non-mangled types
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

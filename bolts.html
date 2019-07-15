@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module bolts</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package selected">
+						<a href="./bolts.html">bolts</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./bolts/iz.html">iz</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./bolts/members.html">members</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./bolts/meta.html">meta</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./bolts/range.html">range</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./bolts/traits.html">traits</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module bolts</h1><p>Contains a number of static reflection utilties that query compile time entities (traits) or transform
+    them (meta). General utilties are in the modules <code class="lang-d"><span class="pln">traits</span></code> and <code class="lang-d"><span class="pln">meta</span></code> and most specific ones are in
+    dedicated modules (i.e. <code class="lang-d"><a href="./bolts/members.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">members</span></a></code> provides utilities over a type's members).
+</p><section><p>Most functions here operate on any compile time entity. For example <code class="lang-d"><span class="pln">isUnaryOver</span></code> works in both these situatons:
+</p>
+<pre class="code"><code class="lang-d"><span class="typ">int </span><span class="pln">i</span><span class="pun">;
+</span><span class="typ">void </span><span class="pln">f</span><span class="pun">(</span><span class="typ">int</span><span class="pun">) {}
+</span><span class="pln">isFunctionOver</span><span class="pun">!(</span><span class="pln">f</span><span class="pun">, </span><span class="typ">int</span><span class="pun">);
+</span><span class="pln">isFunctionOver</span><span class="pun">!(</span><span class="pln">f</span><span class="pun">, </span><span class="lit">3</span><span class="pun">);
+</span><span class="pln">isFunctionOver</span><span class="pun">!(</span><span class="pln">f</span><span class="pun">, </span><span class="pln">i</span><span class="pun">);</span></code></pre>
+</section>
+
+			<section><section><h2>Iz Super Template</h2>
+<p>The <a href="./bolts/iz/iz.html" title="bolts.iz.iz"><code class="lang-d"><span class="pln">iz</span></code></a> super template. Has a lot of the traits on types encapulated in one place. So
+    if there's a trait that tells you something about a compile time entity, chances are <code class="lang-d"><span class="pln">iz</span></code> will have it. E.g:
+</p>
+<pre class="code"><code class="lang-d"><span class="typ">void </span><span class="pln">f</span><span class="pun">(</span><span class="typ">int</span><span class="pun">, </span><span class="typ">float</span><span class="pun">, </span><span class="typ">string</span><span class="pun">) {}
+</span><span class="pln">iz</span><span class="pun">!</span><span class="pln">f<wbr/></span><span class="pun">.</span><span class="pln">unaryOver</span><span class="pun">!(</span><span class="typ">int</span><span class="pun">, </span><span class="typ">float</span><span class="pun">, </span><span class="typ">string</span><span class="pun">);
+</span><span class="pln">iz</span><span class="pun">!</span><span class="pln">f<wbr/></span><span class="pun">.</span><span class="pln">unaryOver</span><span class="pun">!(</span><span class="lit">3</span><span class="pun">, </span><span class="typ">float</span><span class="pun">, </span><span class="str">""</span><span class="pun">);</span></code></pre>
+</section>
+<section><h2>Member Super Template</h2>
+<p>The <a href="./bolts/members/member.html" title="bolts.members.member"><code class="lang-d"><span class="pln">member</span></code></a> super template, found in the <code class="lang-d"><a href="./bolts/members.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">members</span></a></code> module is similar to
+    the <a href="./bolts/iz/iz.html" title="bolts.iz.iz"><code class="lang-d"><span class="pln">iz</span></code></a> template but works on members of types only:
+</p>
+
+<pre class="code"><code class="lang-d"><span class="kwd">import <a href="./bolts/members.html"></span><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">members</span></a><span class="pun">: </span><span class="pln">member</span><span class="pun">;
+</span><span class="kwd">struct </span><span class="pln">S </span><span class="pun">{
+    </span><span class="kwd">static </span><span class="typ">void </span><span class="pln">f</span><span class="pun">() {}
+}
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">member</span><span class="pun">!(</span><span class="pln">S</span><span class="pun">, </span><span class="str">"f"</span><span class="pun">)<wbr/>.</span><span class="pln">exists</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">member</span><span class="pun">!(</span><span class="pln">S</span><span class="pun">, </span><span class="str">"f"</span><span class="pun">)<wbr/>.</span><span class="pln">protection </span><span class="pun">== </span><span class="typ">ProtectionLevel<wbr/></span><span class="pun">.</span><span class="pln">public_</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">member</span><span class="pun">!(</span><span class="pln">S</span><span class="pun">, </span><span class="str">"f"</span><span class="pun">)<wbr/>.</span><span class="pln">isProperty</span><span class="pun">);</span></code></pre>
+</section>
+<section><h2>All the things</h2>
+<p><table><tr><th>Module</th> <th>Function</th> <th>Description</th></tr>
+<tr>    <td><code class="lang-d"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">from</span></code></td>
+    <td><code class="lang-d"><span class="pln">from</span></code></td>
+    <td>lazy import of modules</td>
+    </tr>
+<tr>    <td><code class="lang-d"><a href="./bolts/members.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">members</span></a></code></td>
+    <td><a href="./bolts/members/memberFunctionsOf.html" title="bolts.members.memberFunctionsOf"><code class="lang-d"><span class="pln">memberFunctionsOf</span></code></a></td>
+    <td>Returns a list of all member functions</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/members/staticMembersOf.html" title="bolts.members.staticMembersOf"><code class="lang-d"><span class="pln">staticMembersOf</span></code></a></td>
+    <td>Returns a list of of all static members</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/members/member.html" title="bolts.members.member"><code class="lang-d"><span class="pln">member</span></code></a></td>
+    <td>If a type has a member with certain attributes</td>
+    </tr>
+<tr>    <td><code class="lang-d"><a href="./bolts/meta.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">meta</span></a></code></td>
+    <td><a href="./bolts/meta/TypesOf.html" title="bolts.meta.TypesOf"><code class="lang-d"><span class="typ">TypesOf</span></code></a></td>
+    <td>Returns an AliasSeq of the types of all values given - values can be types or expressions</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/meta/Flatten.html" title="bolts.meta.Flatten"><code class="lang-d"><span class="typ">Flatten</span></code></a></td>
+    <td>Takes a list of ranges and non ranges and returns a list of types of the ranges and types of the non ranges</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/meta/AliasPack.html" title="bolts.meta.AliasPack"><code class="lang-d"><span class="typ">AliasPack</span></code></a></td>
+    <td>Represents an AliasSeq that is not auto expanded</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/meta/staticZip.html" title="bolts.meta.staticZip"><code class="lang-d"><span class="pln">staticZip</span></code></a></td>
+    <td>Zip m n-tuple <code class="lang-d"><span class="typ">AliasPack</span></code>s together to form n m-tuple AliasPacks</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/meta/FilterMembersOf.html" title="bolts.meta.FilterMembersOf"><code class="lang-d"><span class="typ">FilterMembersOf</span></code></a></td>
+    <td>Filters the members of a type based on a has-predicate</td>
+    </tr>
+<tr>    <td><code class="lang-d"><a href="./bolts/traits.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">traits</span></a></code></td>
+    <td><a href="./bolts/traits/isFunctionOver.html" title="bolts.traits.isFunctionOver"><code class="lang-d"><span class="pln">isFunctionOver</span></code></a></td>
+    <td>Checks if a function is n-ary over the passed in types</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isUnaryOver.html" title="bolts.traits.isUnaryOver"><code class="lang-d"><span class="pln">isUnaryOver</span></code></a></td>
+    <td>Checks if a function is unary over some type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isBinaryOver.html" title="bolts.traits.isBinaryOver"><code class="lang-d"><span class="pln">isBinaryOver</span></code></a></td>
+    <td>Checks if a function is binary over some types</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/areCombinable.html" title="bolts.traits.areCombinable"><code class="lang-d"><span class="pln">areCombinable</span></code></a></td>
+    <td>Checks if a set of ranges and non ranges share a common type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isProperty.html" title="bolts.traits.isProperty"><code class="lang-d"><span class="pln">isProperty</span></code></a></td>
+    <td>Tells you if a symbol is an @property</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/hasProperty.html" title="bolts.traits.hasProperty"><code class="lang-d"><span class="pln">hasProperty</span></code></a></td>
+    <td>Tells you if a name is a member and property in a type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/propertySemantics.html" title="bolts.traits.propertySemantics"><code class="lang-d"><span class="pln">propertySemantics</span></code></a></td>
+    <td>Tells you if a property symbol has read and/or write semantics</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/protectionLevel.html" title="bolts.traits.protectionLevel"><code class="lang-d"><span class="pln">protectionLevel</span></code></a></td>
+    <td>Returns the protection level for a symbol</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isManifestAssignable.html" title="bolts.traits.isManifestAssignable"><code class="lang-d"><span class="pln">isManifestAssignable</span></code></a></td>
+    <td>If a member of a type can be assigned to a manifest constant</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isOf.html" title="bolts.traits.isOf"><code class="lang-d"><span class="pln">isOf</span></code></a></td>
+    <td>Is the resolved type is of another resolved type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isNullType.html" title="bolts.traits.isNullType"><code class="lang-d"><span class="pln">isNullType</span></code></a></td>
+    <td>If T is typeof(null)</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isNullable.html" title="bolts.traits.isNullable"><code class="lang-d"><span class="pln">isNullable</span></code></a></td>
+    <td>if null can be assigned to an instance of type T</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/StringOf.html" title="bolts.traits.StringOf"><code class="lang-d"><span class="typ">StringOf</span></code></a></td>
+    <td>Stringifies a type, unlike <code class="lang-d"><wbr/><span class="pun">.</span><span class="pln">stringof</span></code> this version doesn't spit out mangled gibberish</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isSame.html" title="bolts.traits.isSame"><code class="lang-d"><span class="pln">isSame</span></code></a></td>
+    <td>Returns true if a and b are the same thing - same type, same literal value, or same symbol</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isRefType.html" title="bolts.traits.isRefType"><code class="lang-d"><span class="pln">isRefType</span></code></a></td>
+    <td>Checks if a compile time entity is a reference type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isValueType.html" title="bolts.traits.isValueType"><code class="lang-d"><span class="pln">isValueType</span></code></a></td>
+    <td>Checks if a compile time entity is a value type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isLiteralOf.html" title="bolts.traits.isLiteralOf"><code class="lang-d"><span class="pln">isLiteralOf</span></code></a></td>
+    <td>Checks if a compile time entity is a litera of a specific type</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isLiteral.html" title="bolts.traits.isLiteral"><code class="lang-d"><span class="pln">isLiteral</span></code></a></td>
+    <td>Checks if a compile time entity is a literal</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isCopyConstructable.html" title="bolts.traits.isCopyConstructable"><code class="lang-d"><span class="pln">isCopyConstructable</span></code></a></td>
+    <td>Checks if a compile time entity is copy constructable</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isNonTriviallyCopyConstructable.html" title="bolts.traits.isNonTriviallyCopyConstructable"><code class="lang-d"><span class="pln">isNonTriviallyCopyConstructable</span></code></a></td>
+    <td>Checks if a compile time entity is non-trivially (i.e. user defined) copy constructable</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/isTriviallyCopyConstructable.html" title="bolts.traits.isTriviallyCopyConstructable"><code class="lang-d"><span class="pln">isTriviallyCopyConstructable</span></code></a></td>
+    <td>Checks if a compile time entity is trivially copy constructable</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/traits/hasFunctionMember.html" title="bolts.traits.hasFunctionMember"><code class="lang-d"><span class="pln">hasFunctionMember</span></code></a></td>
+    <td>Checks if a type has a member that is a function</td>
+    </tr>
+<tr>    <td><code class="lang-d"><a href="./bolts/range.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">range</span></a></code></td>
+    <td><a href="./bolts/range/isSortedRange.html" title="bolts.range.isSortedRange"><code class="lang-d"><span class="pln">isSortedRange</span></code></a></td>
+    <td>Tells you if a range is sorted</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/range/sortingPredicate.html" title="bolts.range.sortingPredicate"><code class="lang-d"><span class="pln">sortingPredicate</span></code></a></td>
+    <td>Can be used to extract the sorting predicate for a range</td>
+    </tr>
+<tr>    <td></td>
+    <td><a href="./bolts/range/CommonTypeOfRanges.html" title="bolts.range.CommonTypeOfRanges"><code class="lang-d"><span class="typ">CommonTypeOfRanges</span></code></a></td>
+    <td>Finds the common type from a list of ranges</td>
+    </tr>
+<tr>    <td><code class="lang-d"><a href="./bolts/iz.html"><span class="pln">bolts<wbr/></span><span class="pun">.</span><span class="pln">iz</span></a></code></td>
+    <td><a href="./bolts/iz/iz.html" title="bolts.iz.iz"><code class="lang-d"><span class="pln">iz</span></code></a></td>
+    <td>Allows you to query a type or alias with a nicer syntax, i.e. <code class="lang-d"><span class="pln">isNullable</span><span class="pun">!</span><span class="pln">T</span></code> == <code class="lang-d"><span class="pln">iz</span><span class="pun">!</span><span class="pln">T<wbr/></span><span class="pun">.</span><span class="pln">nullable</span></code></td>
+    </tr>
+</table>
+</p>
+</section>
+</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
